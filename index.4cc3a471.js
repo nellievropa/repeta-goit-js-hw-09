@@ -1,0 +1,2 @@
+!function(){console.log("До визову setTimeout"),setTimeout((function(o){console.log(o),console.log("1-Внутри callback-функції для setTimeout")}),2e3,5),console.log("Після визову setTimeout"),setTimeout((function(o){console.log(o),console.log("2-Внутри callback-функції для setTimeout")}),1e3,65);var o=setTimeout((function(o){console.log("Лог через ".concat(o,"ms, тому що не відмінили таймаут"))}),2e3,2e3);console.log(o);var e=Math.random()>.3;console.log(e),e&&clearTimeout(o)}();
+//# sourceMappingURL=index.4cc3a471.js.map
