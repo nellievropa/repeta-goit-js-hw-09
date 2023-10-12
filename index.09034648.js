@@ -1,2 +1,0 @@
-console.log("До визову setTimeout"),setTimeout((o=>{console.log(o),console.log("1-Внутри callback-функції для setTimeout")}),2e3,5),console.log("Після визову setTimeout"),setTimeout((o=>{console.log(o),console.log("2-Внутри callback-функції для setTimeout")}),1e3,65);const o=setTimeout((o=>{console.log(`Лог через ${o}ms, тому що не відмінили таймаут`)}),2e3,2e3);console.log(o);const e=Math.random()>.3;console.log(e),e&&clearTimeout(o);
-//# sourceMappingURL=index.09034648.js.map
