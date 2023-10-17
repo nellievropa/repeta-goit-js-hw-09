@@ -126,3 +126,4 @@ const modal = new BSN.Modal('#exampleModal');
 console.log(modal);
 
 modal.show();
+modal.hide();
