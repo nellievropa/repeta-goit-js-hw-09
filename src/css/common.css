@@ -16,3 +16,27 @@ img {
   display: block;
   max-width: 100%;
 }
+
+p {
+  transform: translateX(400%);
+  transition: transform 250ms ease-in-out;
+
+}
+.alert {
+  display: inline-block;
+  padding: 24px;
+  background-color: green;
+  color: aliceblue;
+  transition-property: transform;
+  transition-duration: 500ms;
+  transition-timing-function: linear;
+  transition-delay: 0;
+
+}
+
+.is-visible { 
+  transform: translateX(0);
+  transition: transform 250ms ease-in;
+
+}
+
