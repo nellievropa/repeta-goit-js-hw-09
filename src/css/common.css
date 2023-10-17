@@ -16,8 +16,8 @@ img {
   display: block;
   max-width: 100%;
 }
-
-p {
+/* ДЛЯ 3ЧАСТИНИ */
+/* p {
   transform: translateX(400%);
   transition: transform 250ms ease-in-out;
 
@@ -38,5 +38,5 @@ p {
   transform: translateX(0);
   transition: transform 250ms ease-in;
 
-}
+} */
 

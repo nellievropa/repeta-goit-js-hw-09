@@ -1,4 +1,5 @@
-// import '../common.css';
+import '../css/common.css';
+import BSN from 'bootstrap.native';
 
 // метод window.setTimeout{callback, delat, arg}
 
@@ -69,32 +70,57 @@
 
 
 // №3 ОПОВІЩЕННЯ Notification
-const NOTIFICATION_DELAY = 3000;
+// const NOTIFICATION_DELAY = 3000;
 
-const refs = {
-    notification: document.querySelector('.js-alert'),
-};
-let timeoutID = null;
+// const refs = {
+//     notification: document.querySelector('.js-alert'),
+// };
+// let timeoutID = null;
 
-refs.notification.addEventListener('click', onNotificationClick);
+// refs.notification.addEventListener('click', onNotificationClick);
 
-showNotification();
+// showNotification();
 
-function onNotificationClick() {
-    hideNotification();
-    clearTimeout(timeoutID);
-}
+// function onNotificationClick() {
+//     hideNotification();
+//     clearTimeout(timeoutID);
+// }
 
-function showNotification() {
-    refs.notification.classList.add('is-visible');
+// function showNotification() {
+//     refs.notification.classList.add('is-visible');
 
-    timeoutID = setTimeout(() => {
-console.log('Закриваємо алерт, щоб не висів!');
-hideNotification();
-    }, NOTIFICATION_DELAY);
-}
+//     timeoutID = setTimeout(() => {
+// console.log('Закриваємо алерт, щоб не висів!');
+// hideNotification();
+//     }, NOTIFICATION_DELAY);
+// }
 
-function hideNotification() {
-    refs.notification.classList.remove('is-visible');
-}
+// function hideNotification() {
+//     refs.notification.classList.remove('is-visible');
+// }
 
+
+// 4 ПІДПИСКА SUBSCRIPTION
+// проміжок часу, через який будуть відбуватися повтори
+// const PROMT_DELAY = 1000;
+// // кількість разів повторів
+// const MAX_PROMT_ATTEMPTS = 3;
+// // створюємо змінну, яка буде рахувати скільки разів ми вже попросили підписатися
+// let promtCounter = 0;
+// let hasSubscribed = false;
+
+// // запускаємо повторення інтервалів
+// const intervalID = setInterval(() => {
+//     if(promtCounter === MAX_PROMT_ATTEMPTS || hasSubscribed) {
+//         console.log('Зупиняємо інтервал!');
+//         clearInterval(intervalID)
+//         return;
+//     }
+// console.log('Підпишися на розсилку! - ' + Date.now());
+// promtCounter += 1;
+// }, PROMT_DELAY);
+
+// Працюємо з БУТСТРАП
+
+const modal = new BSN.Modal('#exampleModal');
+console.log(modal);

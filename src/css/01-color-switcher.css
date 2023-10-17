@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 560px;
+    gap: 12px;
+    border: 2px dashed orange;
+
+}
+
+button {
+    display: block;
+    padding: 12px 36px;
+    background-color:lightblue;
+    border: 1px dashed;
+    border-radius: 4px;
+  
+}
+p.main {
+    align-self: flex-start;
+    transform: translateX(0);
+    position: relative;
+}
