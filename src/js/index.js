@@ -124,3 +124,5 @@ import BSN from 'bootstrap.native';
 
 const modal = new BSN.Modal('#exampleModal');
 console.log(modal);
+
+modal.show();
