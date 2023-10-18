@@ -122,7 +122,7 @@ import BSN from 'bootstrap.native';
 
 // Працюємо з БУТСТРАП
 
-const modal = new BSN.Modal('#exampleModal');
+const modal = new BSN.Modal('#subscription-modal');
 console.log(modal);
 
 modal.show();
