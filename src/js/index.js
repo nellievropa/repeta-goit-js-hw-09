@@ -1,5 +1,7 @@
 import '../css/common.css';
-import BSN from 'bootstrap.native';
+// import BSN from 'bootstrap.native';
+
+
 
 // метод window.setTimeout{callback, delat, arg}
 
@@ -120,10 +122,4 @@ import BSN from 'bootstrap.native';
 // promtCounter += 1;
 // }, PROMT_DELAY);
 
-// Працюємо з БУТСТРАП
 
-const modal = new BSN.Modal('#subscription-modal');
-console.log(modal);
-
-modal.show();
-modal.hide();
