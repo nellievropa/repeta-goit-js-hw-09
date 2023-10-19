@@ -13,7 +13,7 @@ function onStart() {
 
     setInterval(() => {
         console.log('Змінюємо колір!');
-        getRandomHexColor();
+        document.body.style.background = getRandomHexColor();
             }, CHANGE_COLOR);
     
 
