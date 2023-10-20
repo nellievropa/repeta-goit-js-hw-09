@@ -124,13 +124,16 @@ const timer = new Timer({
 
 // timer.start();
 
-refs.startBtn.addEventListener('click', () => {
-    timer.start();
-});
+// refs.startBtn.addEventListener('click', () => {
+//     timer.start();
+// });
+// якщо функцію переписуємо як МЕТОД то додаємо до чого вона прив'язана bind(timer)
+refs.startBtn.addEventListener('click', timer.start.bind(timer));
+refs.stopBtn.addEventListener('click', timer.stop.bind(timer));
 
-refs.stopBtn.addEventListener('click', () => {
-    timer.stop();
-});
+// refs.stopBtn.addEventListener('click', () => {
+//     timer.stop();
+// });
 
 // малюємо ІНТЕРФЕЙС!! 
 // приймає мілісекунди

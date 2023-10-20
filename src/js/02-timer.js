@@ -9,7 +9,7 @@ const refs = {
     secsValue: document.querySelector('span[data-seconds]'),
 }
 
-const startTime = chooseDate();
+const finalTime = chooseDate();
 
 const timer = {
     intervalId: null,
@@ -62,7 +62,7 @@ function pad(value) {
 }
 
 function getTimeComponents(time) {
-    const days = pad(Math.floor((time % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24)));
+    const days = pad(Math.floor(time % (1000 * 60 * 60 * 24)));
     const hours = pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
     const mins = pad( Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
         const secs = pad(Math.floor((time % (1000 * 60)) / 1000));
