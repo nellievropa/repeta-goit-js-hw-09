@@ -1,0 +1,64 @@
+body {
+    background-image: url(https://cdn.pixabay.com/photo/2018/05/01/07/52/tuscany-3364921_1280.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.clock {
+    width: 560px;
+    height: 560px;
+    background-image: url(https://cdn.pixabay.com/photo/2016/10/01/10/23/tuscany-1707192_1280.jpg);
+    background-color: rgba(255, 255, 255, 0);
+    background-size: cover;
+    border-radius: 50%;
+    position: relative;
+    left: 280px;
+    top: auto;
+  
+
+}
+
+.clock-arrow {
+    position: absolute;
+  background-color: black;
+  transform-origin: bottom;
+  transform: translate(-50%);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.clock-center {
+    position: absolute;
+    background-color: black;
+
+}
+
+.calendar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.date-style {
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    text-shadow: 3px 3px 2px #CECBCD;
+  }
+   */
+  /* .box{
+    display: none;
+    width: 200px;
+    height: 100px;
+    border: 1px solid red;
+  } */
