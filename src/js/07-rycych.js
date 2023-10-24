@@ -68,6 +68,10 @@ const year = document.querySelector('.date-year');
 // робимо електронний годинник
 const digitalClock = document.querySelector('.digital-clock');
 
+const arrowSeconds = document.querySelector('.clock-seconds_arrow');
+const arrowMinutes = document.querySelector('.clock-minutes_arrow');
+const arrowHours = document.querySelector('.clock-hours_arrow');
+
 
 const nameOfMonths = ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень','Серпень', 'Вересень', 'Жовтень', 'Листопад','Грудень'];
 const nameOfDay = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'Пятниця', 'Субота'];
@@ -85,13 +89,40 @@ setInterval(() => {
     const currentMinute = currentTime.getMinutes();
     const currentSecond = currentTime.getSeconds();
 
-    console.log(currentHour);
-    console.log(currentMinute);
+
+    // розраховуємо поточне положення секундної стрілки 
+// це значення currentSecond * changeSeconds
+    const changeSeconds = 360 / 60 * currentSecond;
+    const cahngeMinutes = 360 / 60 * currentMinute;
+const changeHours = (360 / 12) * currentHour + (360 / 12 / 60) * currentMinute;
+// console.log(changeHours)
+
+// секунди треба форматувати до виду 00, бо після 59 буде просто 1
+// будем використовувати метод padStart(2, '0'), де 2 - це скільки цифр нам потрібно, а 0 - чим заповнити пусте місце! , але він працює тільки з рядками, 
+// тому спочатку число приводим до рядка .toString, а потім рядок передаємо в textContent(тому до числа знову не приводимо)!
+const formatTime = `${currentHour
+    .toString()
+    .padStart(2, '0')} : ${currentMinute
+    .toString()
+    .padStart(2, '0')} : ${currentSecond
+    .toString()
+    .padStart(2, '0')}`
+
+    // console.log(formatTime);
 
     day.textContent = currentDay;
     date.textContent = currentDate;
     month.textContent = currentMonth;
     year.textContent = currentYear;
+
+    digitalClock.textContent = `Current time: ${formatTime}`;
+
+
+    // щоб змінити положення стрілки на екрані використовуємо метод CSS
+
+arrowSeconds.style.transform = `rotate(${changeSeconds}deg)`;
+arrowMinutes.style.transform = `rotate(${cahngeMinutes}deg)`;
+arrowHours.style.transform = `rotate(${changeHours}deg)`;
 }, 1000)
 
 // const currentTime = new Date();
@@ -107,6 +138,9 @@ setInterval(() => {
 // date.textContent = currentDate;
 // month.textContent = currentMonth;
 // year.textContent = currentYear;
-console.log(currentYear );
+// console.log(currentYear);
 
 // робимо електронний годинник
+//  задаємо картинку годинника https://i.ibb.co/dBGxSK1/hiclipart-com-3.png
+//  вираховуємо на скільки градусів повинна відхилятися секундна стрілка за один ход : 360 : 60 секунд = на 6 градусів повиина здигатися секундна стрілка
+//  все це записуємо в setInterval в змінній changeSeconds

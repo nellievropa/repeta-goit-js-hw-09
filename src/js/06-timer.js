@@ -167,3 +167,45 @@ function updateClockface({ hours, mins, secs }) {
 //             return { hours, mins, secs };
 // }
 
+
+// поточна дата
+const currentDate = new Date();
+// дата від якої будемо рахувати відлік
+
+const targetDate = new Date('12/31/2023');
+
+console.log(currentDate)
+console.log(targetDate)
+console.log(targetDate - currentDate)
+
+// = 5817375901 мілісекунд потім по формулам вираховуємо скільки днів годин і хвилин 
+// потрібно робит все в setInterval(() =>{}, 1000)
+
+setInterval(() =>{
+    const currentDate = new Date();
+    const targetDate = new Date('12/31/2023');
+    console.log(convertMs(targetDate - currentDate))
+}, 1000)
+
+function convertMs(ms) {
+    // Number of milliseconds per unit of time
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+  
+    // Remaining days
+    const days = Math.floor(ms / day);
+    // Remaining hours
+    const hours = Math.floor((ms % day) / hour);
+    // Remaining minutes
+    const minutes = Math.floor(((ms % day) % hour) / minute);
+    // Remaining seconds
+    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  
+    return { days, hours, minutes, seconds };
+  }
+  
+//   console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+//   console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
+//   console.log(convertMs(24140000)); 

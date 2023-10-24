@@ -1,20 +1,24 @@
 body {
+display: flexbox;
     background-image: url(https://cdn.pixabay.com/photo/2018/05/01/07/52/tuscany-3364921_1280.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .clock {
+
     width: 560px;
     height: 560px;
-    background-image: url(https://cdn.pixabay.com/photo/2016/10/01/10/23/tuscany-1707192_1280.jpg);
+    /* background-image: url(https://cdn.pixabay.com/photo/2016/10/01/10/23/tuscany-1707192_1280.jpg); */
+    background-image: url(https://i.ibb.co/dBGxSK1/hiclipart-com-3.png);
     background-color: rgba(255, 255, 255, 0);
     background-size: cover;
     border-radius: 50%;
     position: relative;
-    left: 280px;
+    left: 350px;
     top: auto;
-  
+  margin-left: 12px;
 
 }
 
@@ -22,7 +26,7 @@ body {
     position: absolute;
   background-color: black;
   transform-origin: bottom;
-  transform: translate(-50%);
+  transform: translateX(-50%);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
@@ -30,21 +34,68 @@ body {
 .clock-center {
     position: absolute;
     background-color: black;
+    top: 268px;
+    left: 268px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 
 }
+
+.clock-seconds_arrow {
+  bottom: 50%;
+  left: 50%;
+  width: 5px;
+  height: 40%;
+}
+
+.clock-minutes_arrow {
+  bottom: 50%;
+  left: 50%;
+  width: 7px;
+  height: 33%;
+}
+
+.clock-hours_arrow{
+  bottom: 50%;
+  left: 50%;
+  width: 12px;
+  height: 24%;
+
+}
+.date {
+  width: 100px;
+  height: 100px;
+  color: black;
+}
+
 
 .calendar {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: space-between;
-  font-size: 24px;
-  font-weight: 600;
+  /* font-size: 20px;
+  font-weight: 600; */
 }
-
 .date-style {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
+  font-size: 40px;
+  font-weight: 900;
+  text-shadow: 3px 3px 2px #CECBCD;
 }
+
+.digital-clock {
+  /* display: flex;
+  justify-content: center; */
+  /* margin: 12px auto; */
+text-align: center;
+  font-size: 60px;
+  /* font-weight: 600; */
+  text-shadow: 3px 3px 2px #CECBCD;
+}
+
+
 
 
 /* div {
