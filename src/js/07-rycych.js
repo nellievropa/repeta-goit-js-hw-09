@@ -65,22 +65,48 @@ const day = document.querySelector('.date-day');
 const date = document.querySelector('.date');
 const month = document.querySelector('.date-month');
 const year = document.querySelector('.date-year');
+// робимо електронний годинник
+const digitalClock = document.querySelector('.digital-clock');
+
+
 const nameOfMonths = ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень','Серпень', 'Вересень', 'Жовтень', 'Листопад','Грудень'];
 const nameOfDay = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'Пятниця', 'Субота'];
 
+//  з датами завжди використовуємо setInterval(), щоб оновлювалась дата при переході з одного дня на інший
+// в цьому випадку new Date() буде оновлюватися щосекунди (1000)
+setInterval(() => {
+    const currentTime = new Date();
+    const currentDay = nameOfDay[currentTime.getDay()];
+    const currentDate = currentTime.getDate();
+    const currentMonth = nameOfMonths[currentTime.getMonth()];
+    const currentYear = currentTime.getFullYear();
+// отримуємо данні, яка зараз година, хвилина і секунда
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+    const currentSecond = currentTime.getSeconds();
 
+    console.log(currentHour);
+    console.log(currentMinute);
 
-const currentTime = new Date();
-// достаємо наш день по ІНДЕКСУ, який ми берем з currentTime
-currentDay = nameOfDay[currentTime.getDay()];
-// цей метод повертає число поточне і беремо його просто з currentTime
-currentDate = currentTime.getDate();
-currentMonth = nameOfMonths[currentTime.getMonth()];
-currentYear = currentTime.getFullYear();
+    day.textContent = currentDay;
+    date.textContent = currentDate;
+    month.textContent = currentMonth;
+    year.textContent = currentYear;
+}, 1000)
 
-// підставимо наші значення в наші діви
-day.textContent = currentDay;
-date.textContent = currentDate;
-month.textContent = currentMonth;
-year.textContent = currentYear;
+// const currentTime = new Date();
+// // достаємо наш день по ІНДЕКСУ, який ми берем з currentTime
+// const currentDay = nameOfDay[currentTime.getDay()];
+// // цей метод повертає число поточне і беремо його просто з currentTime
+// const currentDate = currentTime.getDate();
+// const currentMonth = nameOfMonths[currentTime.getMonth()];
+// const currentYear = currentTime.getFullYear();
+
+// // підставимо наші значення в наші діви
+// day.textContent = currentDay;
+// date.textContent = currentDate;
+// month.textContent = currentMonth;
+// year.textContent = currentYear;
 console.log(currentYear );
+
+// робимо електронний годинник
