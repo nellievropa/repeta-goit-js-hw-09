@@ -241,6 +241,7 @@ this.isActive = true;
 
 this.intervalId = setInterval(() => {
     const currentTime = Date.now();
+    console.log(currentTime)
     const deltaTime = targetTime - currentTime;
     const time = this.convertMs(deltaTime);
 
@@ -253,9 +254,9 @@ stop1 () {
     // тут знову кажемо, що кнопка неактивна повинна бути
     this.isActive = false;
     // щоб обнулити таймер: викликаємо функцію і передаємо їй 0 секунд
-    const time = `00:00:00:00`;
-    // const time = this.convertMs(0);
-    // this.onTick(time);
+    
+    const time = this.convertMs(0);
+    this.onTick(time);
 }
 // getTimeComponents(time) {
 //     const hours = this.pad(
@@ -281,16 +282,22 @@ stop1 () {
     const day = hour * 24;
   
     // Remaining days
-    const days = Math.floor(ms / day);
+    const days = this.pad(Math.floor(ms / day));
     // Remaining hours
-    const hours = Math.floor((ms % day) / hour);
+    const hours = this.pad(Math.floor((ms % day) / hour));
     // Remaining minutes
-    const minutes = Math.floor(((ms % day) % hour) / minute);
+    const minutes = this.pad(Math.floor(((ms % day) % hour) / minute));
     // Remaining seconds
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+    const seconds = this.pad(Math.floor((((ms % day) % hour) % minute) / second));
   
     return { days, hours, minutes, seconds };
   }
+
+  pad(value) {
+    // цей запис означає : візьми число, зроби з нього строку і на старті(ЗЛІВА!!) додай '0'
+    return String(value).padStart(2, '0');
+}
+
 
 }
 

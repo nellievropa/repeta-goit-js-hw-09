@@ -1,40 +1,84 @@
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 
 const refs = {
+   
     startBtn: document.querySelector('button[data-start]'),
-    datePicker: document.querySelector('#datetime-picker'),
+    // datePicker: document.querySelector('#datetime-picker'),
     daysValue: document.querySelector('span[data-days]'),
     hoursValue: document.querySelector('span[data-hours]'),
     minsValue: document.querySelector('span[data-minutes]'),
     secsValue: document.querySelector('span[data-seconds]'),
 }
 
-const finalTime = chooseDate();
+const Calendars = flatpickr("input#datetime-picker", 
+
+     options = {
+        enableTime: true,
+        time_24hr: true,
+        defaultDate: new Date(),
+        minuteIncrement: 1,
+        onClose(selectedDates) {
+          console.log(selectedDates[0]);
+     
+        },
+      }
+    
+);
+// // поточна дата
+// const currentDate = new Date();
+// // дата від якої рахуємо відлік
+// const targetDate = Calendars.choosenDate;
+// const targetDate = new Date(choosenDate);
+// console.log(targetDate);
+
+// console.log(targetDate - currentDate);
 
 const timer = {
     intervalId: null,
     isActive: false,
+
     start() {
-        if(isActive) {
-            return;
-        }
 
-        this.isActive = true;
+        // const currentDate = Date.now();
+        // console.log(currentDate);
+        // дата від якої рахуємо відлік
 
-this.intervalId = setInterval(() => {
-    const currentTime = Date.now();
-    const dateTime = startTime- currentTime;
-    // const { days, hours, mins, secs } = getTimeComponents(deltaTime);
+        const targetDate = new Date(Calendars.selectedDates[0]);
+console.log(targetDate);
+        // const targetDate = new Date(Calendars.selectedDates[0]).getTime();
+        
+        // console.log(targetDate);
+        // console.log(targetDate - currentDate);
+
+
+  
+    const reversDate = new Date(targetDate).getTime();
+    console.log(reversDate);
+
+    refs.startBtn.isActive = true;
+
+    intervalId = setInterval(() => {
+        const currentDate = new Date().getTime();
+//         console.log(currentDate);
+// console.log(reversDate - currentDate);
+
+    const deltaTime = reversDate - currentDate;
+    console.log(deltaTime);
+    // const { days, hours, minutes, seconds } = convertMs(deltaTime);
     // деструктуризацію змінюємо на змінну time
-    // const time = getTimeComponents(deltaTime);
+    const time = convertMs(deltaTime);
+    console.log(time)
     // і викликаємо функцію updateClockFace
-    // updateClockFace(time);
+    updateClockFace(time);
     
-    console.log(`${days}:${hours}:${mins}:${secs}`);
+    // console.log(`${days}:${hours}:${mins}:${secs}`);
 }, 1000);
     },
 stop() {
-    clearInterval(this.intervalId);
+
+    clearInterval(intervalId);
 },
 
 };
@@ -44,14 +88,19 @@ refs.startBtn.addEventListener('click', () => {
 })
 
 
-refs.stopBtn.addEventListener('click', () => {
-    timer.stop();
-})
+// refs.stopBtn.addEventListener('click', () => {
+//     timer.stop();
+// })
 
 
 
-function updateClockFace ({days, hours, mins, secs}) {
-    requestAnimationFrame.clockface.textContent = `${days}:${hours}:${mins}:${secs}`;
+function updateClockFace ({days, hours, minutes, seconds}) {
+    refs.daysValue.textContent = `${days}`;
+    refs.hoursValue.textContent = `${hours}`;
+    refs.minsValue.textContent = `${minutes}`;
+    refs.secsValue.textContent = `${seconds}`;
+
+    // requestAnimationFrame.clockface.textContent = `${days}:${hours}:${mins}:${secs}`;
 }
 
 //  для того, щоб зробити числа завжди двозначними (01 або 25) використовуємо метод pad
@@ -61,20 +110,6 @@ function pad(value) {
     return String(value).padStart(2, '0');
 }
 
-function getTimeComponents(time) {
-    const days = pad(Math.floor(time % (1000 * 60 * 60 * 24)));
-    const hours = pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-    const mins = pad( Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-        const secs = pad(Math.floor((time % (1000 * 60)) / 1000));
-
-            return { days, hours, mins, secs};
-}
-
-setInterval(() =>{
-    const currentDate = new Date();
-    const targetDate = new Date('12/31/2023');
-    console.log(convertMs(targetDate - currentDate)) 
-}, 1000)
 
 function convertMs(ms) {
     // Number of milliseconds per unit of time
@@ -84,14 +119,13 @@ function convertMs(ms) {
     const day = hour * 24;
   
     // Remaining days
-    const days = Math.floor(ms / day);
+    const days = pad(Math.floor(ms / day));
     // Remaining hours
-    const hours = Math.floor((ms % day) / hour);
+    const hours = pad(Math.floor((ms % day) / hour));
     // Remaining minutes
-    const minutes = Math.floor(((ms % day) % hour) / minute);
+    const minutes = pad(Math.floor(((ms % day) % hour) / minute));
     // Remaining seconds
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+    const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
   
     return { days, hours, minutes, seconds };
   }
-  
