@@ -6,6 +6,9 @@ const refs = {
     startBtn: document.querySelector('button[data-action-start]'),
     stopBtn: document.querySelector('button[data-action-stop]'),
     clockface: document.querySelector('.js-clockface'),
+    reversStartBtn: document.querySelector('button[data-action-revers-start]'),
+    reversStopBtn: document.querySelector('button[data-action-revers-stop]'),
+    reversClockface: document.querySelector('.js-revers-clockface'),
 };
 
 
@@ -168,6 +171,11 @@ function updateClockface({ hours, mins, secs }) {
 // }
 
 
+
+
+
+
+
 // поточна дата
 const currentDate = new Date();
 // дата від якої будемо рахувати відлік
@@ -209,3 +217,90 @@ function convertMs(ms) {
 //   console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 //   console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 //   console.log(convertMs(24140000)); 
+
+class reversTimer {
+    constructor({ onTick }) {
+        this.intervalId = null;
+        this.isActive = false;
+        this.onTick = onTick;
+
+        this.init();
+    }
+
+    init() {
+        const time = this.convertMs(0);
+        this.onTick(time);
+    }
+
+start1() {
+    if (this.isActive) {
+        return;
+    }
+    const targetTime = new Date('10/26/2023');
+this.isActive = true;
+
+this.intervalId = setInterval(() => {
+    const currentTime = Date.now();
+    const deltaTime = targetTime - currentTime;
+    const time = this.convertMs(deltaTime);
+
+ this.onTick(time);
+}, 1000);
+}
+
+stop1 () {
+    clearInterval(this.intervalId);
+    // тут знову кажемо, що кнопка неактивна повинна бути
+    this.isActive = false;
+    // щоб обнулити таймер: викликаємо функцію і передаємо їй 0 секунд
+    const time = `00:00:00:00`;
+    // const time = this.convertMs(0);
+    // this.onTick(time);
+}
+// getTimeComponents(time) {
+//     const hours = this.pad(
+//         Math.floor((time % (1000 * 60 * 60 *24)) / (1000 * 60 * 60)),
+//         );
+//     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+//         const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
+
+//             return { hours, mins, secs };
+// }
+
+// pad(value) {
+//     // цей запис означає : візьми число, зроби з нього строку і на старті(ЗЛІВА!!) додай '0'
+//     return String(value).padStart(2, '0');
+// }
+
+
+ convertMs(ms) {
+    // Number of milliseconds per unit of time
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+  
+    // Remaining days
+    const days = Math.floor(ms / day);
+    // Remaining hours
+    const hours = Math.floor((ms % day) / hour);
+    // Remaining minutes
+    const minutes = Math.floor(((ms % day) % hour) / minute);
+    // Remaining seconds
+    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  
+    return { days, hours, minutes, seconds };
+  }
+
+}
+
+const revTimer = new reversTimer({
+    onTick: updateReversClockface,
+});
+
+function updateReversClockface({ days, hours, minutes, seconds }) {
+    refs.reversClockface.textContent = `${days}:${hours}:${minutes}:${seconds}`;
+}
+
+refs.reversStartBtn.addEventListener('click', revTimer.start1.bind(revTimer));
+refs.reversStopBtn.addEventListener('click', revTimer.stop1.bind(revTimer));

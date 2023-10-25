@@ -4,6 +4,9 @@ display: flexbox;
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    height: 853px;
+
 }
 
 .clock {
@@ -15,12 +18,14 @@ display: flexbox;
     background-color: rgba(255, 255, 255, 0);
     background-size: cover;
     border-radius: 50%;
-    position: relative;
-    left: 350px;
-    top: auto;
-  margin-left: 12px;
+    /* вирівняти по центру контейнера з position: relative; */
+    position: absolute;
+  top: 55%;
+  left: 50%;
+  margin-right: -50%;
+  /* підняти на половину висоти і ширини власної */
+  transform: translate(-50%, -50%) }
 
-}
 
 .clock-arrow {
     position: absolute;
@@ -64,8 +69,7 @@ display: flexbox;
 
 }
 .date {
-  width: 100px;
-  height: 100px;
+
   color: black;
 }
 
@@ -80,17 +84,17 @@ display: flexbox;
 .date-style {
   display: flex;
   /* flex-direction: row; */
-  font-size: 40px;
-  font-weight: 900;
+  font-size: 32px;
+  font-weight: 700;
   text-shadow: 3px 3px 2px #CECBCD;
 }
 
 .digital-clock {
-  /* display: flex;
-  justify-content: center; */
-  /* margin: 12px auto; */
-text-align: center;
-  font-size: 60px;
+  display: flex;
+  justify-content: center;
+  margin: 12px auto;
+/* text-align: center; */
+  font-size: 40px;
   /* font-weight: 600; */
   text-shadow: 3px 3px 2px #CECBCD;
 }
