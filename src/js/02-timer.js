@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 
 const refs = {
@@ -27,26 +28,38 @@ const Calendars = flatpickr("input#datetime-picker",
     
 );
 
-
 const timer = {
     intervalId: null,
    
-
     start() {
        
         refs.startBtn.isActive = false;
         // дата від якої рахуємо відлік
         const targetDate = new Date(Calendars.selectedDates[0]);
-        console.log(targetDate);
+        // console.log(targetDate);
   //   переводимо  її в мілісекунди 
     const reversDate = new Date(targetDate).getTime();
     const currentDate = new Date().getTime();
-    console.log(reversDate);
-    console.log(currentDate);
+    // console.log(reversDate);
+    // console.log(currentDate);
 
     if (reversDate < currentDate) {
         refs.startBtn.isActive = false;
-        alert("Please choose a date in the future");
+        // alert("Please choose a date in the future");
+        // Report.failure(
+        //     'You chose a wrong date!',
+        //     'Please try again and select the correct date <br/><br/>- Будь ласка, спробуйте ще та виберіть дату знову',
+        //     'Close  / Закрити',
+        //     );
+            Report.warning(
+                'You chose a wrong date!',
+                'Please try again <br/><br/>- select the correct date',
+                'Okay',
+                () => {
+                    alert(' Будь ласка, спробуйте ще та виберіть дату знову');
+                    },
+                );
+
         return;
     }
 
