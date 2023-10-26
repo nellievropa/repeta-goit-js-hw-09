@@ -100,13 +100,9 @@ const changeHours = (360 / 12) * currentHour + (360 / 12 / 60) * currentMinute;
 // секунди треба форматувати до виду 00, бо після 59 буде просто 1
 // будем використовувати метод padStart(2, '0'), де 2 - це скільки цифр нам потрібно, а 0 - чим заповнити пусте місце! , але він працює тільки з рядками, 
 // тому спочатку число приводим до рядка .toString, а потім рядок передаємо в textContent(тому до числа знову не приводимо)!
-const formatTime = `${currentHour
-    .toString()
-    .padStart(2, '0')} : ${currentMinute
-    .toString()
-    .padStart(2, '0')} : ${currentSecond
-    .toString()
-    .padStart(2, '0')}`
+const formatTime = `${currentHour.toString().padStart(2, '0')} : 
+${currentMinute.toString().padStart(2, '0')} 
+: ${currentSecond.toString().padStart(2, '0')}`
 
     // console.log(formatTime);
 

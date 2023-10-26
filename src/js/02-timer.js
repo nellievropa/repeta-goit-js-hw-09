@@ -27,70 +27,66 @@ const Calendars = flatpickr("input#datetime-picker",
     
 );
 
+
 const timer = {
     intervalId: null,
-    isActive: false,
+   
 
     start() {
-
+       
+        refs.startBtn.isActive = false;
         // дата від якої рахуємо відлік
-
         const targetDate = new Date(Calendars.selectedDates[0]);
-console.log(targetDate);
-        // const targetDate = new Date(Calendars.selectedDates[0]).getTime();
-        
-        // console.log(targetDate);
-        // console.log(targetDate - currentDate);
-
-
-  
+        console.log(targetDate);
+  //   переводимо  її в мілісекунди 
     const reversDate = new Date(targetDate).getTime();
+    const currentDate = new Date().getTime();
     console.log(reversDate);
+    console.log(currentDate);
+
+    if (reversDate < currentDate) {
+        refs.startBtn.isActive = false;
+        alert("Please choose a date in the future");
+        return;
+    }
+
+    let deltaTime = 0;
+    const intervalId = setInterval(() => {
+    const currentDate = new Date().getTime();
 
     refs.startBtn.isActive = true;
-
-    intervalId = setInterval(() => {
-        const currentDate = new Date().getTime();
-//         console.log(currentDate);
-// console.log(reversDate - currentDate);
-
-    const deltaTime = reversDate - currentDate;
+    deltaTime = reversDate - currentDate;
     console.log(deltaTime);
+    
+    if (deltaTime <= 0) {
+        clearInterval(intervalId);
+        console.log(`Interval with id ${intervalId} has stopped!`);
+        return;
+
+    }
     // const { days, hours, minutes, seconds } = convertMs(deltaTime);
     // деструктуризацію змінюємо на змінну time
     const time = convertMs(deltaTime);
-    console.log(time)
+    // console.log(time)
     // і викликаємо функцію updateClockFace
-    updateClockFace(time);
-    
-    // console.log(`${days}:${hours}:${mins}:${secs}`);
+    addLeadingZero(time);
+
 }, 1000);
     },
-stop() {
-
-    clearInterval(intervalId);
-},
 
 };
 
 refs.startBtn.addEventListener('click', () => {
     timer.start();
-})
+});
 
 
-// refs.stopBtn.addEventListener('click', () => {
-//     timer.stop();
-// })
+function addLeadingZero ({days, hours, minutes, seconds}) {
+    refs.daysValue.textContent = `${pad(days)}`;
+    refs.hoursValue.textContent = `${pad(hours)}`;
+    refs.minsValue.textContent = `${pad(minutes)}`;
+    refs.secsValue.textContent = `${pad(seconds)}`;
 
-
-
-function updateClockFace ({days, hours, minutes, seconds}) {
-    refs.daysValue.textContent = `${days}`;
-    refs.hoursValue.textContent = `${hours}`;
-    refs.minsValue.textContent = `${minutes}`;
-    refs.secsValue.textContent = `${seconds}`;
-
-    // requestAnimationFrame.clockface.textContent = `${days}:${hours}:${mins}:${secs}`;
 }
 
 //  для того, щоб зробити числа завжди двозначними (01 або 25) використовуємо метод pad
@@ -98,7 +94,7 @@ function updateClockFace ({days, hours, minutes, seconds}) {
 function pad(value) {
     // цей запис означає : візьми число, зроби з нього строку і на старті(ЗЛІВА!!) додай '0'
     return String(value).padStart(2, '0');
-}
+};
 
 
 function convertMs(ms) {
@@ -109,13 +105,17 @@ function convertMs(ms) {
     const day = hour * 24;
   
     // Remaining days
-    const days = pad(Math.floor(ms / day));
+    // const days = pad(Math.floor(ms / day));
+    const days = Math.floor(ms / day);
     // Remaining hours
-    const hours = pad(Math.floor((ms % day) / hour));
+    // const hours = pad(Math.floor((ms % day) / hour));
+    const hours = Math.floor((ms % day) / hour);
     // Remaining minutes
-    const minutes = pad(Math.floor(((ms % day) % hour) / minute));
+    // const minutes = pad(Math.floor(((ms % day) % hour) / minute));
+    const minutes = Math.floor(((ms % day) % hour) / minute);
     // Remaining seconds
-    const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
+    // const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
+    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   
     return { days, hours, minutes, seconds };
-  }
+  };
