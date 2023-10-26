@@ -14,7 +14,7 @@ const refs = {
 
 const Calendars = flatpickr("input#datetime-picker", 
 
-     options = {
+ {
         enableTime: true,
         time_24hr: true,
         defaultDate: new Date(),
