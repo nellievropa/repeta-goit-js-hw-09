@@ -26,14 +26,6 @@ const Calendars = flatpickr("input#datetime-picker",
       }
     
 );
-// // поточна дата
-// const currentDate = new Date();
-// // дата від якої рахуємо відлік
-// const targetDate = Calendars.choosenDate;
-// const targetDate = new Date(choosenDate);
-// console.log(targetDate);
-
-// console.log(targetDate - currentDate);
 
 const timer = {
     intervalId: null,
@@ -41,8 +33,6 @@ const timer = {
 
     start() {
 
-        // const currentDate = Date.now();
-        // console.log(currentDate);
         // дата від якої рахуємо відлік
 
         const targetDate = new Date(Calendars.selectedDates[0]);
