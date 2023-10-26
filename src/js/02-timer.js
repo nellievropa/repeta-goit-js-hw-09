@@ -69,10 +69,15 @@ const timer = {
 
     refs.startBtn.isActive = true;
     deltaTime = reversDate - currentDate;
-    console.log(deltaTime);
+    // console.log(deltaTime);
     
     if (deltaTime <= 0) {
         clearInterval(intervalId);
+        Report.info(
+            'Time "X" has come',
+            'And we can move forward! <br/><br/>- NeBa',
+            'Okay',
+            );
         console.log(`Interval with id ${intervalId} has stopped!`);
         return;
 
