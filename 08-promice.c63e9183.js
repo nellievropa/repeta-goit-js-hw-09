@@ -1,0 +1,2 @@
+new Promise((function(n,o){var e=Math.random()>.5;setTimeout((function(){e&&n("Promise was made with FULLFILL"),o("Promise was made with result REJECTED")}),2e3)})).then((function(n){return console.log(n),5})).then((function(n){return console.log(n),2335522})).then((function(n){throw console.log(n),new Error("це помилка в другому then")})).catch((function(n){return console.log(n)})).finally((function(){console.log("Я буду виконаний ЗАВЖДИ (в любому випадку)")}));
+//# sourceMappingURL=08-promice.c63e9183.js.map
