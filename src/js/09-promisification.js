@@ -58,3 +58,4 @@ fetch('https://pokeapi.co/api/v2/pokemon/4')
 .catch(error => {
     console.log('єто в блоке catch')
 });
+
