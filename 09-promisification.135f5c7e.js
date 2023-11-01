@@ -1,0 +1,2 @@
+!function(){var o,c;o=function(o){console.log("onFetchSuccess -> onFetchSuccess"),console.log(o)},c=function(o){console.log("onFetchError -> onFetchError"),console.log("єто в блоке catch"),console.log(o)},fetch("https://pokeapi.co/api/v2/pokemon/".concat(1)).then((function(o){return o.json()})).then((function(c){o(c)})).catch((function(o){console.log("єто в блоке catch"),c(o)}))}();
+//# sourceMappingURL=09-promisification.135f5c7e.js.map
