@@ -50,19 +50,32 @@
 // тому використовуємо fetch()
 // https://pokeapi.co
 
-
-const fetchPokemonById = id => {
+const fetchPokemonById = (id, onSuccess, onError) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
 .then(r => r.json())
 .then(pokemon => {
-    console.log(pokemon);
+    onSuccess(pokemon);
 })
 .catch(error => {
     console.log('єто в блоке catch');
-    console.log(error);
+    onError(error);
 });
 
 };
 
-fetchPokemonById(1);
-fetchPokemonById(3);
+// fetchPokemonById(1);
+// fetchPokemonById(3);
+// fetchPokemonById(2);
+fetchPokemonById(1, onFetchSuccess, onFetchError)
+
+function onFetchSuccess(pokemon) {
+    console.log('onFetchSuccess -> onFetchSuccess');
+    console.log(pokemon);
+}
+
+function onFetchError(error) {
+    console.log('onFetchError -> onFetchError');
+    console.log('єто в блоке catch');
+    console.log(error);
+}
+
