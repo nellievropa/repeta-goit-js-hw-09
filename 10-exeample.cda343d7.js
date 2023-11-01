@@ -1,0 +1,2 @@
+const o=o=>fetch(`https://pokeapi.co/api/v2/pokemon/${o}`).then((o=>o.json()));function c(o){console.log("onFetchSuccess -> onFetchSuccess"),console.log(o)}function e(o){console.log("onFetchError -> onFetchError"),console.log("єто в блоке catch"),console.log(o)}o(3).then(c).catch(e),o(7).then(c).catch(e),o(1e3).then(c).catch(e);new Promise(((o,c)=>{const e=Math.random()>.5;setTimeout((()=>{e&&o("Куку це RESOLVE"),c("Все пропало!!! бо це reject")}))}),1e3).then((o=>console.log(o))).catch((o=>console.log(o)));
+//# sourceMappingURL=10-exeample.cda343d7.js.map
