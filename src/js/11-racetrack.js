@@ -75,7 +75,7 @@ function determineWinner(horseP) {
 function waitForAll(horseP) {
     Promise.all(horseP).then(x => {
         // refs.progressField.textContent = '%c Заезд окончен, принимаются ставки!'-замінюємо на створену функцію!
-        updateProgressField('%c Заезд окончен, принимаются ставки!')
+        updateProgressField('Заезд окончен, принимаются ставки!')
              
   
     })
@@ -92,7 +92,7 @@ function updateProgressField(message) {
 
 function updateResultTable({raceCounter, horse, time }) {
 // робимо шаблонну строку
-const tr =`<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`;
+const tr =`<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`
 // додаємо в таблицю
 refs.tableBody.insertAdjacentHTML('beforeend', tr);
 }
