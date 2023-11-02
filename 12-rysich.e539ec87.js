@@ -1,0 +1,2 @@
+console.log("1"),setTimeout((()=>console.log("2")),10),Promise.resolve("3").then((o=>console.log(o))),Promise.reject("4").then((o=>console.log(o))).catch((o=>console.log(o))),Promise.resolve("5").then((o=>console.log(o))),setTimeout((()=>console.log("6")),5),setTimeout((()=>{console.log("7"),Promise.resolve("8").then((o=>console.log(o)))}),0),console.log("9");
+//# sourceMappingURL=12-rysich.e539ec87.js.map

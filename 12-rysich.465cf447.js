@@ -1,0 +1,2 @@
+console.log("1"),setTimeout((function(){return console.log("2")}),10),Promise.resolve("3").then((function(o){return console.log(o)})),Promise.reject("4").then((function(o){return console.log(o)})).catch((function(o){return console.log(o)})),Promise.resolve("5").then((function(o){return console.log(o)})),setTimeout((function(){return console.log("6")}),5),setTimeout((function(){console.log("7"),Promise.resolve("8").then((function(o){return console.log(o)}))}),0),console.log("9");
+//# sourceMappingURL=12-rysich.465cf447.js.map
