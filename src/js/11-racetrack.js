@@ -7,6 +7,9 @@ const horses = [
     'Flying Fox',
     'Saebiscuit',
 ];
+// створимо змінну, яка рахуватиме кількість забігів
+
+let raceCounter = 0;
 
 const refs = {
     startBtn: document.querySelector('.js-race-btn'),
@@ -16,30 +19,67 @@ const refs = {
 }
 
 // запускаємо коней по кліку на кнопку старт
-refs.startBtn.addEventListener('click', () => {
-    const promises = horses.map(run);
+// refs.startBtn.addEventListener('click', () => {
+    // const promises = horses.map(run);
     // refs.winnerField.textContent = '';-замінюємо на створену функцію!
-    updateWinnerField('');
+    // updateWinnerField('');
     // і напишемо , що заїзд почався
     // refs.progressField.textContent = 'Заезд начался, ставки не принимаются!'-замінюємо на створену функцію!
-    updateProgressField('Заезд начался, ставки не принимаются!')
+    // updateProgressField('Заезд начался, ставки не принимаются!')
     
+// винесли визначення переможця в окрему функцію, а сюди передали тільки звернення до неї через проміс
+// determineWinner(promises);
+    // Promise.race(promises).then(({ horse, time }) => {
+    //     // refs.winnerField.textContent = `%c Победил ${ horse} финишировал за ${time} времени`; -замінюємо на створену функцію
+    //     updateWinnerField(`Победил ${ horse} финишировал за ${time} времени`);
+    //     updateResultTable({ horse, time });
+     
+    // });
+    // waitForAll(promises);
+    // Promise.all(promises).then(x => {
+    //     // refs.progressField.textContent = '%c Заезд окончен, принимаются ставки!'-замінюємо на створену функцію!
+    //     updateProgressField('%c Заезд окончен, принимаются ставки!')
+             
+  
+    // })
+// });
 
-    Promise.race(promises).then(({ horse, time }) => {
+
+// і тоді refs.startBtn.addEventListener буде виглядати так 
+refs.startBtn.addEventListener('click', onStart);
+
+// потім взагалі всі const i функції виносимо в одну функцію onStart
+
+function onStart() {
+    raceCounter +=1;
+    const promises = horses.map(run);
+
+    updateWinnerField('');
+    updateProgressField('Заезд начался, ставки не принимаются!')
+    determineWinner(promises);
+    waitForAll(promises);
+}
+
+
+
+// виносимо в функцію визначення переможця, аргумент можемо назвати як хочемо horseP
+function determineWinner(horseP) {
+    Promise.race(horseP).then(({ horse, time }) => {
         // refs.winnerField.textContent = `%c Победил ${ horse} финишировал за ${time} времени`; -замінюємо на створену функцію
-        updateWinnerField(`Победил ${ horse} финишировал за ${time} времени`);
-        updateResultTable({ horse, time });
+        updateWinnerField(`В заїзді № ${raceCounter} переміг ${ horse} финишировал за ${time} времени`);
+        updateResultTable({ raceCounter, horse, time });
      
     });
-
-    Promise.all(promises).then(x => {
+}
+// винесемо функцію, яка визначає загальний список і передамо їй той же аргумент horseP
+function waitForAll(horseP) {
+    Promise.all(horseP).then(x => {
         // refs.progressField.textContent = '%c Заезд окончен, принимаются ставки!'-замінюємо на створену функцію!
         updateProgressField('%c Заезд окончен, принимаются ставки!')
              
   
     })
-})
-
+}
 // коли багато повторюваних полів -виносимо їх в функції!
 
 function updateWinnerField (message) {
@@ -50,9 +90,9 @@ function updateProgressField(message) {
     refs.progressField.textContent = message;
 };
 
-function updateResultTable({ horse, time }) {
+function updateResultTable({raceCounter, horse, time }) {
 // робимо шаблонну строку
-const tr =`<tr><td>0</td><td>${horse}</td><td>${time}</td></tr>`;
+const tr =`<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`;
 // додаємо в таблицю
 refs.tableBody.insertAdjacentHTML('beforeend', tr);
 }

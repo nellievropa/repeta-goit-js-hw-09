@@ -42,3 +42,26 @@ img {
 
 } */
 
+/* 11-racetrack */
+table {
+  /* table-layout: fixed; */
+  width: 50%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+ 
+}
+thead {
+
+  border: 3px solid purple;
+  text-align: center;
+}
+table th,
+table td {
+  padding: 10px;
+  border: 3px solid purple;
+  text-align: center;
+}
+
+hr {
+  border-color:brown;
+}
