@@ -105,7 +105,7 @@ return new Promise((resolve, reject) => {
 
     setTimeout(() => {
         // повертаємо об'єкт зі значеннями наприклад {"horse": "Mango","time": 2329 }
-        resolve({horse, time})
+        resolve({raceCounter, horse, time})
     }, time);
 
 });
