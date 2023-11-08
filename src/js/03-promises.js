@@ -19,12 +19,16 @@ refs.createPromiseBtn.addEventListener('click', run)
 
 
 function run(position){
-  let i= 0;
+  let i = 0;
   position = refs.amountField.value;
+  console.log(position)
 for (i = 0; i <= position; i =+ 1) {
 createPromise(i)
 .then(() => {
-  
+  console.log(`✅ Fulfilled promise ${i} in ${delay + step}ms`)
+})
+.catch(() => {
+  console.log(`❌ Rejected promise ${position} in ${delay}ms`)
 })
 }
 
