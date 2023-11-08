@@ -8,50 +8,81 @@ const refs = {
   amountField: document.querySelector('.js-number'),
 }
 
-// console.dir(formFild)
 
-let position = 0;
-let delay = 0;
-let step = 0;
+// let delay = 0;
+// let step = 0;
+// let position = 0;
+
+// const position = refs.amountField.value;
+// const delay = refs.firstDelayField.value;
+// const step = refs.delayStepField.value;
+// console.log(position)
+// console.log(delay)
+// console.log(step)
+console.dir(refs.formFild);
 
 refs.createPromiseBtn.addEventListener('click', run)
 
 
 
-function run(position){
+function run(){
   let i = 0;
+ const result = [];
   position = refs.amountField.value;
-  console.log(position)
+  delay = refs.firstDelayField.value;
+  // step = refs.delayStepField.value;
+  // console.log(position)
+  // console.log(delay)
+  // console.log(step)
+  // console.dir(refs.formFild);
+  // refs.formFild.forEach((delay, position) => {
+  //   createPromise(position)
+  //   .then((prom) => {
+  //     console.log(`✅ Fulfilled promise ${position} in ${delay + step}ms`)
+  //   })
+  //   .catch((prom) => {
+  //     console.log(`❌ Rejected promise ${position} in ${delay + step}ms`)
+  //   })
+  // })
 for (i = 0; i <= position; i =+ 1) {
-createPromise(i)
-.then(() => {
-  console.log(`✅ Fulfilled promise ${i} in ${delay + step}ms`)
-})
-.catch(() => {
-  console.log(`❌ Rejected promise ${position} in ${delay}ms`)
-})
+  createPromise(position, delay )
+  .then(({ position, delay }) => {
+    prom.position = position;
+    prom.delay = delay + step;
+    result.push()
+
+  })
+  .catch(({ position, delay }) => {
+    prom.position = position;
+    prom.delay = delay + step;
+    result.push()
+  })
+  .finally(() => {
+
+  })
+}
 }
 
- console.dir(refs.formFild);
-// createPromise()
-}
+
+
 
 
 function createPromise(position, delay) {
-
-  position = refs.amountField.value;
-  delay = refs.firstDelayField.value;
-  step = refs.delayStepField.value;
+  const position = refs.amountField.value;
+  const delay = refs.firstDelayField.value;
+  const step = refs.delayStepField.textContent;
+  // step = refs.delayStepField.value;
   return new Promise ((res, rej) => {
     const shouldResolve = Math.random() > 0.3;
 
+// console.log(step)
     setTimeout(() => {
       if (shouldResolve) {
         res(console.log(`✅ Fulfilled promise ${position} in ${delay}ms`));
       } else {
         rej(console.log(`❌ Rejected promise ${position} in ${delay}ms`));
       }
-    },delay + step )
+    }, delay + step )
 
     });
   
