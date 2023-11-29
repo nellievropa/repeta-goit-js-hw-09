@@ -41,7 +41,7 @@ const date3 = Date.now();
 console.log('date3',date3);
 
 
-const a = "0";
+const a = "";
 const b = a ?? "b";
 const c = a || "c";
 
