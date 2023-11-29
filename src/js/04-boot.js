@@ -64,3 +64,4 @@ function openModal () {
         promtCounter += 1;
     }, PROMPT_DELAY);
 }
+

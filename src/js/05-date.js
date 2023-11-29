@@ -21,6 +21,7 @@
 
 const date1 = new Date();
 console.log(date1);
+console.log(`hello world`);
 
 
 setTimeout(() => {
@@ -38,6 +39,14 @@ console.log(date2 - date1);
 
 const date3 = Date.now();
 console.log('date3',date3);
+
+
+const a = "0";
+const b = a ?? "b";
+const c = a || "c";
+
+
+console.log(b, c);
 
 
 
